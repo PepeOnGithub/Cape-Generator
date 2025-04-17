@@ -1,6 +1,4 @@
-Here's a comprehensive `README.md` for your Cape Generator:
 
-```markdown
 # 🧥 Cape Generator for Minecraft Bedrock Edition
 
 [![GitHub License](https://img.shields.io/github/license/yourusername/cape-generator?style=flat-square)](LICENSE)
