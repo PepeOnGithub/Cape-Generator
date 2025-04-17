@@ -1,0 +1,155 @@
+:root {
+    --accent: #7289DA;
+    --bg: #ffffff;
+    --text: #2c2f33;
+    --border: #e3e5e8;
+    --surface: #f8f9fa;
+}
+
+.dark {
+    --bg: #1e1e1e;
+    --text: #ffffff;
+    --border: #40444b;
+    --surface: #2c2f33;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    transition: all 0.3s ease;
+}
+
+header {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--surface);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--accent);
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.name-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#pack-name {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+#pack-name:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.2);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.file-upload {
+    position: relative;
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.file-upload:hover {
+    background: #5b6eae;
+}
+
+.file-upload input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #5b6eae;
+    transform: translateY(-1px);
+}
+
+canvas {
+    width: 100%;
+    max-width: 512px;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+button#theme-toggle {
+    background: rgba(114, 137, 218, 0.1);
+    color: var(--accent);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+}
+
+button#theme-toggle:hover {
+    background: rgba(114, 137, 218, 0.2);
+}
