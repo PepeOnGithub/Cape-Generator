@@ -9,29 +9,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1><i class="fas fa-crown"></i> Cape Generator</h1>
-        <button id="theme-toggle"><i class="fas fa-moon"></i></button>
-    </header>
-    
-    <main>
-        <div class="name-input">
-            <label for="pack-name"><i class="fas fa-pencil-alt"></i> Pack Name</label>
-            <input type="text" id="pack-name" placeholder="MyAwesomeCape" value="MyCape">
-        </div>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-crown"></i> Cape Generator</h1>
+            <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+        </header>
+        
+        <main>
+            <div class="config-section">
+                <div class="input-group">
+                    <label for="pack-name"><i class="fas fa-tag"></i> Pack Name</label>
+                    <input type="text" id="pack-name" placeholder="MyAwesomeCape">
+                </div>
+                
+                <div class="controls">
+                    <label class="file-upload btn-secondary">
+                        <i class="fas fa-image"></i> Choose Image
+                        <input type="file" id="image-input" accept="image/*">
+                    </label>
+                    <button id="download-btn" class="btn-primary">
+                        <i class="fas fa-download"></i> Generate .mcpack
+                    </button>
+                </div>
+            </div>
 
-        <div class="controls">
-            <label class="file-upload">
-                <i class="fas fa-upload"></i> Upload Image
-                <input type="file" id="image-input" accept="image/*">
-            </label>
-            <button id="download-btn" class="btn-primary">
-                <i class="fas fa-download"></i> Download Cape
-            </button>
-        </div>
-
-        <canvas id="cape-canvas" width="64" height="32"></canvas>
-    </main>
+            <div class="preview-container">
+                <canvas id="cape-canvas" width="64" height="32"></canvas>
+                <p class="preview-text"><i class="fas fa-info-circle"></i> Canvas Preview (64x32 pixels)</p>
+            </div>
+        </main>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
