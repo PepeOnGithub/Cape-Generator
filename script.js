@@ -35,13 +35,18 @@ document.getElementById('image-input').addEventListener('change', e => {
     reader.readAsDataURL(file);
 });
 
+img.onload
+
 img.onload = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw the user's image first
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    
+    // Then draw the template on top (assuming template has transparency)
     ctx.drawImage(baseTemplate, 0, 0, canvas.width, canvas.height);
 };
 
-// Download handler
 document.getElementById('download-btn').addEventListener('click', async () => {
     if (!templateZip) return alert('Template not loaded yet!');
     
@@ -50,8 +55,12 @@ document.getElementById('download-btn').addEventListener('click', async () => {
 
     canvas.toBlob(async (blob) => {
         const zip = templateZip;
+        
+        // Replace BOTH files to ensure complete override
         zip.file('textures/entity/cape_invisible.png', blob);
-        const content = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE' });
+        zip.file('textures/entity/cape.png', blob); // Add this line
+        
+        const content = await zip.generateAsync({type:'blob', compression:'DEFLATE'});
         saveAs(content, filename);
-    });
+    }, 'image/png'); // Ensure PNG format
 });
