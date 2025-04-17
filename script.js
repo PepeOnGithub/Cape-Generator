@@ -1,31 +1,33 @@
 const toggleBtn = document.getElementById('theme-toggle');
 let templateZip = null;
 
-// Immediately load template on page load
+// Template loading with error feedback
 (async function init() {
     try {
-        // 1. Load template file
-        const response = await fetch('Cape_Template.mcpack');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        // 1. Load template
+        const response = await fetch('Cape_Template.zip');
+        if (!response.ok) throw new Error(`Failed to fetch template (${response.status})`);
         
-        // 2. Parse template
+        // 2. Verify content type
+        if (!response.headers.get('Content-Type').includes('zip')) {
+            throw new Error('Invalid template format - must be ZIP');
+        }
+
+        // 3. Parse template
         const buffer = await response.arrayBuffer();
         templateZip = await JSZip.loadAsync(buffer);
         
-        // 3. Verify critical files exist
+        // 4. Verify critical file exists
         if (!templateZip.file('textures/entity/cape_invisible.png')) {
-            throw new Error('Template missing required cape file');
+            throw new Error('Template missing textures/entity/cape_invisible.png');
         }
 
-        // 4. Initialize canvas with transparent background
-        const canvas = document.getElementById('cape-canvas');
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
         console.log('Template loaded successfully!');
+        document.getElementById('status').textContent = 'Ready to generate!';
+
     } catch (error) {
-        console.error('Template loading failed:', error);
-        alert(`Template load failed: ${error.message}`);
+        console.error('Template error:', error);
+        alert(`TEMPLATE ERROR: ${error.message}`);
     }
 })();
 
