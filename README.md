@@ -2,7 +2,7 @@
 # 🧥 Cape Generator for Minecraft Bedrock Edition
 
 [![GitHub License](https://img.shields.io/github/license/yourusername/cape-generator?style=flat-square)](LICENSE)
-[![Website](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fyourusername.github.io/cape-generator&style=flat-square)](https://yourusername.github.io/cape-generator)
+[![Website](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fyourusername.github.io/cape-generator&style=flat-square)](https://pepeongithub.github.io/Cape-Generator)
 
 A web-based tool to create custom capes for Minecraft Bedrock Edition. Generate `.mcpack` files directly from your browser!
 
@@ -17,7 +17,7 @@ A web-based tool to create custom capes for Minecraft Bedrock Edition. Generate 
 
 ## 🚀 Quick Start
 
-1. Visit the [live demo](https://pepeongithub.github.io/cape-generator)
+1. Visit the [Live Demo](https://pepeongithub.github.io/Cape-Generator)
 2. Click "Choose Image" to upload your cape design
 3. (Optional) Enter a custom pack name
 4. Preview your design on the canvas
@@ -27,8 +27,8 @@ A web-based tool to create custom capes for Minecraft Bedrock Edition. Generate 
 
 ```bash
 # Clone repository
-git clone https://github.com/pepeongithub/cape-generator.git
-cd cape-generator
+git clone https://github.com/pepeongithub/Cape-Generator.git
+cd Cape-Generator
 
 # No build required - just open in browser!
 open index.html
@@ -78,5 +78,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Created with ❤️ by [Pepe]**  
-🔗 [Report Issue](https://github.com/pepeongithub/cape-generator/issues)  
-💡 [Suggest Feature](https://github.com/pepeongithub/cape-generator/discussions)
+🔗 [Report Issue](https://github.com/pepeongithub/Cape-Generator/issues)  
+💡 [Suggest Feature](https://github.com/pepeongithub/Cape-Generator/discussions)
