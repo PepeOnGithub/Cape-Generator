@@ -1,5 +1,6 @@
 const toggleBtn = document.getElementById('theme-toggle');
 let templateZip = null;
+let uploadedImageBlob = null;
 
 // UUID generator
 function uuidv4() {
@@ -47,52 +48,57 @@ document.getElementById('image-input').addEventListener('change', function(e) {
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            canvas.toBlob(blob => {
+                uploadedImageBlob = blob;
+            }, 'image/png');
         };
         img.src = reader.result;
     };
     reader.readAsDataURL(file);
 });
 
-// Download handler with UUID + manifest update
+// Download handler with UUID + manifest + pack_icon
 document.getElementById('download-btn').addEventListener('click', async () => {
     if (!templateZip) return alert('Template still loading... Please wait');
-    
+    if (!uploadedImageBlob) return alert('Please upload a cape image first.');
+
     try {
         const canvas = document.getElementById('cape-canvas');
         const packName = document.getElementById('pack-name').value.trim() || 'MyCape';
         const safeFileName = `${packName.replace(/[^a-z0-9]/gi, '_')}.mcpack`;
         const cleanName = packName.replace(/_/g, ' ');
 
-        canvas.toBlob(async (blob) => {
-            const newZip = templateZip.clone();
-            newZip.file('textures/entity/cape_invisible.png', blob);
+        const newZip = templateZip.clone();
 
-            const manifestFile = newZip.file('manifest.json');
-            if (!manifestFile) throw new Error('manifest.json is missing in template');
+        newZip.file('textures/entity/cape_invisible.png', uploadedImageBlob);
+        newZip.file('pack_icon.png', uploadedImageBlob);
 
-            const manifestText = await manifestFile.async('string');
-            const manifest = JSON.parse(manifestText);
+        const manifestFile = newZip.file('manifest.json');
+        if (!manifestFile) throw new Error('manifest.json is missing in template');
 
-            manifest.header.name = cleanName;
-            manifest.header.description = `${cleanName} made using Pepe's Cape Generator`;
-            manifest.header.uuid = uuidv4();
+        const manifestText = await manifestFile.async('string');
+        const manifest = JSON.parse(manifestText);
 
-            if (Array.isArray(manifest.modules)) {
-                manifest.modules.forEach(mod => {
-                    mod.uuid = uuidv4();
-                });
-            }
+        manifest.header.name = cleanName;
+        manifest.header.description = `${cleanName} made using Pepe's Cape Generator`;
+        manifest.header.uuid = uuidv4();
 
-            newZip.file('manifest.json', JSON.stringify(manifest, null, 4));
-
-            const content = await newZip.generateAsync({
-                type: 'blob',
-                compression: 'DEFLATE',
-                compressionOptions: { level: 9 }
+        if (Array.isArray(manifest.modules)) {
+            manifest.modules.forEach(mod => {
+                mod.uuid = uuidv4();
             });
+        }
 
-            saveAs(content, safeFileName);
-        }, 'image/png');
+        newZip.file('manifest.json', JSON.stringify(manifest, null, 4));
+
+        const content = await newZip.generateAsync({
+            type: 'blob',
+            compression: 'DEFLATE',
+            compressionOptions: { level: 9 }
+        });
+
+        saveAs(content, safeFileName);
     } catch (error) {
         console.error('Generation error:', error);
         alert('Failed to create cape: ' + error.message);
