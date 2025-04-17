@@ -11,7 +11,7 @@ toggleBtn.addEventListener('click', () => {
 
 // Load template
 const baseTemplate = new Image();
-fetch('MCT_Cape_Template.mcpack')
+fetch('MCT_Cape_Template.mcpack.zip')
     .then(res => res.arrayBuffer())
     .then(buffer => JSZip.loadAsync(buffer))
     .then(zip => {
