@@ -27,20 +27,20 @@ body {
     place-items: center;
     min-height: 100vh;
     transition: all 0.3s ease;
+    padding: 0.5rem;
 }
 
 .container {
     background: var(--surface);
     width: 95%;
     max-width: 800px;
-    margin: 2rem;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
 header {
-    padding: 1.5rem;
+    padding: 1rem;
     background: rgba(114, 137, 218, 0.1);
     display: flex;
     justify-content: space-between;
@@ -49,7 +49,7 @@ header {
 }
 
 h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -57,7 +57,7 @@ h1 {
 }
 
 .config-section {
-    padding: 2rem;
+    padding: 1.5rem;
     display: grid;
     gap: 1.5rem;
 }
@@ -69,13 +69,14 @@ h1 {
 }
 
 input[type="text"] {
-    padding: 0.75rem 1rem;
+    padding: 1rem;
     border: 2px solid var(--border);
     border-radius: 8px;
     background: var(--bg);
     color: var(--text);
     font-family: inherit;
     transition: all 0.3s ease;
+    min-height: 48px;
 }
 
 input[type="text"]:focus {
@@ -87,42 +88,39 @@ input[type="text"]:focus {
 .controls {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .btn-primary {
     background: var(--accent);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem;
     border: none;
     border-radius: 8px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background: #5b6eae;
-    transform: translateY(-1px);
+    min-height: 48px;
+    width: 100%;
 }
 
 .btn-secondary {
     background: rgba(114, 137, 218, 0.1);
     color: var(--accent);
     border: 2px solid var(--border);
-    padding: 0.75rem 1.5rem;
+    padding: 1rem;
     border-radius: 8px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-    background: rgba(114, 137, 218, 0.2);
+    min-height: 48px;
+    width: 100%;
 }
 
 .file-upload input {
@@ -130,7 +128,7 @@ input[type="text"]:focus {
 }
 
 .preview-container {
-    padding: 2rem;
+    padding: 1.5rem;
     background: var(--bg);
     border-top: 2px solid var(--border);
     text-align: center;
@@ -142,7 +140,7 @@ canvas {
     background: var(--surface);
     border: 2px solid var(--border);
     border-radius: 8px;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 
 .preview-text {
@@ -152,6 +150,8 @@ canvas {
     align-items: center;
     gap: 0.5rem;
     justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
 }
 
 #theme-toggle {
@@ -166,10 +166,6 @@ canvas {
     transition: all 0.3s ease;
 }
 
-#theme-toggle:hover {
-    background: rgba(114, 137, 218, 0.1);
-}
-
 .status-info {
     padding: 1rem;
     background: rgba(114, 137, 218, 0.1);
@@ -180,96 +176,40 @@ canvas {
     gap: 0.75rem;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .container {
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
+        margin: 2rem;
     }
 
     header {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+        padding: 1.5rem;
+        flex-direction: row;
+    }
+
+    h1 {
+        font-size: 1.5rem;
     }
 
     .config-section {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     .controls {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     .btn-primary,
     .btn-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem;
-    }
-
-    .preview-container {
-        padding: 1.5rem;
-    }
-
-    canvas {
-        margin: 0.5rem 0;
+        width: auto;
+        padding: 0.75rem 1.5rem;
     }
 
     input[type="text"] {
-        padding: 1rem;
-    }
-
-    h1 {
-        font-size: 1.25rem;
-    }
-
-    .preview-text {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        box-shadow: none;
-    }
-
-    .config-section {
-        padding: 1rem;
+        padding: 0.75rem 1rem;
     }
 
     .preview-container {
-        padding: 1rem;
+        padding: 2rem;
     }
-
-    button#theme-toggle {
-        width: 36px;
-        height: 36px;
-    }
-/* Add these to existing styles */
-body {
-    padding: 0.5rem;
-}
-
-input[type="text"] {
-    min-height: 48px; /* Better touch target */
-}
-
-.btn-primary,
-.btn-secondary {
-    min-height: 48px; /* Better touch target */
-}
-
-.file-upload {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.preview-text {
-    flex-wrap: wrap;
-    text-align: center;
-    line-height: 1.4;
-}
 }
